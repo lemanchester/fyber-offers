@@ -1,0 +1,17 @@
+# Ignore bundler config.
+/.bundle
+
+.rspec
+
+# Have mercy on vim users
+*.swo
+*.swp
+
+# MacOs files
+.DS_Store
+
+# Sublime
+*.sublime*
+
+# Vagrant files
+.vagrant/*
