@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 
 gem 'thin', '~> 1.6.3'
+gem 'httparty', '~> 0.13.5'
+gem 'addressable', '~> 2.3.8'
 gem 'sinatra'
 
 group :development do
