@@ -19,7 +19,7 @@ module Fyber
 
     describe "#perfom" do
       let(:endpoint) do
-        Uri.new("offers", "json").to_s
+        URI.new("offers", "json").to_s
       end
 
       subject { described_class.new(request_method, path, params) }

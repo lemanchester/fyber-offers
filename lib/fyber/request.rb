@@ -12,7 +12,7 @@ module Fyber
     # @param [Hash<Symbol,String>] list of the http params
     def initialize(request_method, path, options = {})
       @options = default_format(options)
-      @uri = Uri.new(path, @options[:format])
+      @uri = URI.new(path, @options[:format])
       @path = uri.path
       @request_method = request_method
     end

@@ -1,6 +1,6 @@
 
 module Fyber
-  class Uri
+  class URI
 
     BASE = 'http://api.sponsorpay.com/feed/v1/'
 

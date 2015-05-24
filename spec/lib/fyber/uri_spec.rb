@@ -1,7 +1,7 @@
 require "spec_helper"
 
 module Fyber
-  describe Uri do
+  describe URI do
 
     subject { described_class.new(path, format) }
 
@@ -12,7 +12,7 @@ module Fyber
       context "given the offers path" do
 
         it "return the full url setting the format" do
-          expect(subject.to_s).to eql("#{Uri::BASE}offers.json")
+          expect(subject.to_s).to eql("#{URI::BASE}offers.json")
         end
       end
 
