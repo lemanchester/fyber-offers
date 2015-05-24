@@ -10,7 +10,7 @@ module Fyber
       @headers     = headers
     end
 
-    def parse!
+    def validate!
       raise_error(Error) if code != 200
       raise InvalidResponseSignature.new unless valid?
       raise_error(NoContentError) if parsed_body["code"] == "NO_CONTENT"

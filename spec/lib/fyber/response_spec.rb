@@ -8,7 +8,7 @@ module Fyber
     end
     subject { described_class.new(code, raw_body, parsed_body, headers) }
 
-    describe "#parse!" do
+    describe "#validate!" do
 
       context "given a bad response" do
         let(:code) { 401 }
@@ -20,7 +20,7 @@ module Fyber
         end
 
         it "raise an error" do
-          expect { subject.parse! }.to raise_error(Fyber::Error)
+          expect { subject.validate! }.to raise_error(Fyber::Error)
         end
       end
 
@@ -38,7 +38,7 @@ module Fyber
         end
 
         it "raise an error" do
-          expect { subject.parse! }.to raise_error(Fyber::NoContentError)
+          expect { subject.validate! }.to raise_error(Fyber::NoContentError)
         end
       end
 
@@ -52,7 +52,7 @@ module Fyber
         end
 
         it "raise an error" do
-          expect { subject.parse! }.to raise_error(Fyber::InvalidResponseSignature)
+          expect { subject.validate! }.to raise_error(Fyber::InvalidResponseSignature)
         end
       end
 
