@@ -1,11 +1,9 @@
-require 'digest/sha1'
-
 module Fyber
   class Hashkey < Struct.new(:params, :api_key)
 
     # @return [String] encrypted ordernaded query string
     def generate
-      @hashkey ||= Digest::SHA1.hexdigest(query_string)
+      @hashkey ||= Encrypt.generate(query_string)
     end
 
     protected
