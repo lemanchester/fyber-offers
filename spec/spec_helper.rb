@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require "yajl"
 
 $: << File.expand_path('../../lib', __FILE__)
 

@@ -1,4 +1,3 @@
-require "yajl"
 require "spec_helper"
 
 module Fyber
