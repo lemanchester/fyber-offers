@@ -2,7 +2,7 @@ require "spec_helper"
 
 module Fyber
   describe Request do
-    let(:path)           { '/offers' }
+    let(:path)           { 'offers' }
     let(:request_method) { :get      }
     let(:params) do
       {
@@ -19,7 +19,7 @@ module Fyber
 
     describe "#perfom" do
       let(:endpoint) do
-        "http://api.sponsorpay.com/feed/v1/offers"
+        Uri.new("offers", "json").to_s
       end
 
       subject { described_class.new(request_method, path, params) }

@@ -4,7 +4,6 @@ require "addressable/uri"
 module Fyber
   class Request
     include HTTParty
-    base_uri 'api.sponsorpay.com/feed/v1/'
 
     attr_reader :request_method, :path, :uri, :options
 
@@ -12,9 +11,9 @@ module Fyber
     # @param [String] path to the offer-api or full URL
     # @param [Hash<Symbol,String>] list of the http params
     def initialize(request_method, path, options = {})
-      @uri = ::Addressable::URI.parse(path.start_with?('http') ? path : self.class.base_uri + path)
-      @path = uri.path
       @options = default_format(options)
+      @uri = Uri.new(path, @options[:format])
+      @path = uri.path
       @request_method = request_method
     end
 
