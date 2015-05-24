@@ -3,6 +3,10 @@ module Fyber
 
     attr_reader :code, :raw_body, :parsed_body, :headers
 
+    # @param [Integer] the http status code
+    # @param [String]  the raw response body
+    # @param [Hash<String,String>] parsed response body
+    # @param [Hash<String,String>] the headers of the request
     def initialize(code, raw_body, parsed_body, headers)
       @code        = code
       @raw_body    = raw_body
