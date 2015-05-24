@@ -15,4 +15,12 @@ module Fyber
   end
 
   class NoContentError < Error; end;
+
+  class InvalidResponseSignature < Error
+
+    def initialize
+      super("ERROR_INVALID_RESPONSE_SIGNATURE", "The response is untrustful")
+    end
+
+  end
 end
