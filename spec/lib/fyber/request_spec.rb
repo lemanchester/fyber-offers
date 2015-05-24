@@ -17,7 +17,7 @@ module Fyber
       }
     end
 
-    describe "#perfom" do
+    describe "#perfom!" do
       let(:endpoint) do
         URI.new("offers", "json").to_s
       end
@@ -26,29 +26,26 @@ module Fyber
 
       context "given a successful get request to offers" do
         let(:http_response) do
-          double("response", code: 200)
-        end
-
-        it "receive the get method with the params" do
-          expect(described_class).to receive(:get)
-            .with(endpoint, {query: params}).once
-          subject.perform
+          double("response", code: 200, body: "", parsed_response: {}, headers: {})
         end
 
         before do
           allow(described_class).to receive(:get).with(endpoint,
             {query: params}).and_return(http_response)
+          allow_any_instance_of(Response).to receive(:validate!)
         end
 
-        it "receive the get method with the params and return 200" do
-          expect(subject.perform.code).to eql(200)
+        it "receive the get method with the params" do
+          expect(described_class).to receive(:get)
+            .with(endpoint, {query: params}).once
+          subject.perform!
         end
 
       end
 
       context "given a bad request" do
         let(:http_response) do
-          double("bad response", code: 401)
+          double("bad response", code: 401, body: "", parsed_response: {}, headers: {})
         end
 
         before do
@@ -56,8 +53,8 @@ module Fyber
             {query: params}).and_return(http_response)
         end
 
-        it "receive the get method with the params and return 200" do
-          expect(subject.perform.code).to eql(401)
+        it "raise an error" do
+          expect { subject.perform! }.to raise_error(Fyber::Error)
         end
       end
 

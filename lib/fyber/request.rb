@@ -18,10 +18,11 @@ module Fyber
     end
 
     # @return [HTTParty::Response] http response from the performed action
-    def perform
+    def perform!
       options_key = request_method == :get ? :query : :form
-      self.class.public_send(request_method, uri.to_s,
-        { options_key => options })
+      resp = self.class.public_send(request_method, uri.to_s,{ options_key => options })
+      Response.new(resp.code, resp.body, resp.parsed_response,
+        resp.headers).validate!
     end
 
     protected
