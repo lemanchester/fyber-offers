@@ -6,6 +6,7 @@ gem 'thin', '~> 1.6.3'
 gem 'httparty', '~> 0.13.5'
 gem 'addressable', '~> 2.3.8'
 gem 'sinatra'
+gem 'yajl-ruby', '~> 1.2.1'
 
 group :development do
   gem 'foreman'
