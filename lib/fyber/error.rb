@@ -13,4 +13,6 @@ module Fyber
     end
 
   end
+
+  class NoContentError < Error; end;
 end
