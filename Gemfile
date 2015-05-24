@@ -7,6 +7,7 @@ gem 'httparty', '~> 0.13.5'
 gem 'addressable', '~> 2.3.8'
 gem 'sinatra'
 gem 'yajl-ruby', '~> 1.2.1'
+gem 'hashie', '~> 3.4.1'
 
 group :development do
   gem 'foreman'
