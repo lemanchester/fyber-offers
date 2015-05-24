@@ -1,0 +1,14 @@
+{
+ "code": "NO_CONTENT" ,
+ "message": "Successful request, but no offers are currently available for this user.",
+ "count": 0,
+ "pages": 1,
+ "information" : {
+  "app_name": "SP Test App" ,
+  "appid": 157,
+  "virtual_currency": "Coins",
+  "country": " US" ,
+  "language": " EN" ,
+  "support_url": "http://iframe.sponsorpay.com/mobile/DE/157/my_offers"
+ }
+}

@@ -1,20 +1,24 @@
 module Fyber
   class Response
 
-    attr_reader :code, :body, :headers
+    attr_reader :code, :raw_body, :parsed_body, :headers
 
-    def initialize(code, body, headers)
-      @code = code
-      @body = body
-      @headers = headers
+    def initialize(code, raw_body, parsed_body, headers)
+      @code        = code
+      @raw_body    = raw_body
+      @parsed_body = parsed_body
+      @headers     = headers
     end
 
     def parse!
-      raise_error if code != 200
+      raise_error(Error) if code != 200
+      raise_error(NoContentError) if parsed_body["code"] == "NO_CONTENT"
     end
 
-    def raise_error
-      raise Error.new(body["code"], body["message"])
+    protected
+
+    def raise_error(error_class)
+      raise error_class.new(parsed_body["code"], parsed_body["message"])
     end
 
   end
