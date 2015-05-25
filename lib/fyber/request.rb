@@ -5,15 +5,17 @@ module Fyber
   class Request
     include HTTParty
 
-    attr_reader :request_method, :path, :uri, :options
+    attr_reader :request_method, :path, :uri, :options, :api_key
 
     # @param [Symbol] http verb
     # @param [String] path to the offer-api or full URL
+    # @param [String] the api key
     # @param [Hash<Symbol,String>] list of the http params
-    def initialize(request_method, path, options = {})
-      @options = default_format(options)
-      @uri = URI.new(path, @options[:format])
-      @path = uri.path
+    def initialize(request_method, path, api_key, options = {})
+      @options        = set_hashkey(default_format(options), api_key)
+      @uri            = URI.new(path, @options[:format])
+      @path           = uri.path
+      @api_key        = api_key
       @request_method = request_method
     end
 
@@ -26,6 +28,10 @@ module Fyber
     end
 
     protected
+
+      def set_hashkey(options, api_key)
+        options.merge(hashkey: Hashkey.new(options, api_key).generate)
+      end
 
       # Defines the defaul format as json if is not defiend on the params
       # @param see #initialize

@@ -3,7 +3,8 @@ require "spec_helper"
 module Fyber
   describe Request do
     let(:path)           { 'offers' }
-    let(:request_method) { :get      }
+    let(:request_method) { :get     }
+    let(:api_key)        { "232323" }
     let(:params) do
       {
         appid:      157,
@@ -16,13 +17,18 @@ module Fyber
         format:     "json"
       }
     end
+    let(:hashkey) { "1e071d48cb145eb750d89c0f84fa5caa65d058db" }
+    let(:query) do
+      { query: params.merge(hashkey: hashkey) }
+    end
+
+    subject { described_class.new(request_method, path, api_key, params) }
+
 
     describe "#perfom!" do
       let(:endpoint) do
         URI.new("offers", "json").to_s
       end
-
-      subject { described_class.new(request_method, path, params) }
 
       context "given a successful get request to offers" do
         let(:http_response) do
@@ -30,14 +36,12 @@ module Fyber
         end
 
         before do
-          allow(described_class).to receive(:get).with(endpoint,
-            {query: params}).and_return(http_response)
           allow_any_instance_of(Response).to receive(:validate!)
         end
 
         it "receive the get method with the params" do
           expect(described_class).to receive(:get)
-            .with(endpoint, {query: params}).once
+            .with(endpoint, query).once.and_return(http_response)
           subject.perform!
         end
 
@@ -50,7 +54,7 @@ module Fyber
 
         before do
           allow(described_class).to receive(:get).with(endpoint,
-            {query: params}).and_return(http_response)
+            query).and_return(http_response)
         end
 
         it "raise an error" do
@@ -65,8 +69,6 @@ module Fyber
       context "given the format isnt send as a param" do
         before { params.delete(:fromat) }
 
-        subject { described_class.new(request_method, path, params) }
-
         it "returns the default json format" do
           expect(subject.options[:format]).to eql("json")
         end
@@ -75,11 +77,17 @@ module Fyber
       context "given set the format on the param list" do
         before { params.merge!({format: "xml"}) }
 
-        subject { described_class.new(request_method, path, params) }
-
         it "returns the format send through params" do
           expect(subject.options[:format]).to eql("xml")
         end
+      end
+
+      context "ginve the params it should set the hashkey" do
+
+        it "returns the format send through params" do
+          expect(subject.options[:hashkey]).to eql(hashkey)
+        end
+
       end
 
     end
