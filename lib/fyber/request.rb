@@ -12,7 +12,7 @@ module Fyber
     # @param [String] the api key
     # @param [Hash<Symbol,String>] list of the http params
     def initialize(request_method, path, api_key, options = {})
-      @options        = set_hashkey(default_format(options), api_key)
+      @options        = set_hashkey(defaults(options), api_key)
       @uri            = URI.new(path, @options[:format])
       @path           = uri.path
       @api_key        = api_key
@@ -33,10 +33,10 @@ module Fyber
         options.merge(hashkey: Hashkey.new(options, api_key).generate)
       end
 
-      # Defines the defaul format as json if is not defiend on the params
+      # Defines the default format and adding timestamp
       # @param see #initialize
-      def default_format(options)
-        { format: "json" }.merge(options)
+      def defaults(options)
+        { format: "json", timestamp: Time.now.to_i }.merge(options)
       end
 
   end

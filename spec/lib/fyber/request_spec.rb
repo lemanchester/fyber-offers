@@ -14,10 +14,11 @@ module Fyber
         page:       2,
         ps_time:    1312211903,
         pub0:       "campaign2",
-        format:     "json"
+        format:     "json",
+        timestamp:  1432592537
       }
     end
-    let(:hashkey) { "1e071d48cb145eb750d89c0f84fa5caa65d058db" }
+    let(:hashkey) { "c06f9231477ac002c2539732f6b5ce75dd6795b2" }
     let(:query) do
       { query: params.merge(hashkey: hashkey) }
     end
@@ -36,6 +37,7 @@ module Fyber
         end
 
         before do
+          allow(Time).to receive_message_chain("now.to_i") { params[:timestamp] }
           allow_any_instance_of(Response).to receive(:validate!)
         end
 
