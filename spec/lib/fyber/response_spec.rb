@@ -5,7 +5,9 @@ module Fyber
     let(:headers) do
       { 'X-Sponsorpay-Response-Signature' => "123" }
     end
-    subject { described_class.new(code, raw_body, parsed_body, headers) }
+    let(:api_key) { "31b2cea19ffe6e0840dc7d3973c45bf77a7010b8" }
+
+    subject { described_class.new(api_key, code, raw_body, parsed_body, headers) }
 
     describe "#validate!" do
 

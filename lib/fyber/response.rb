@@ -1,17 +1,19 @@
 module Fyber
   class Response
 
-    attr_reader :code, :raw_body, :parsed_body, :headers
+    attr_reader :api_key, :code, :raw_body, :parsed_body, :headers
 
+    # @param [Strubg] the api key
     # @param [Integer] the http status code
     # @param [String]  the raw response body
     # @param [Hash<String,String>] parsed response body
     # @param [Hash<String,String>] the headers of the request
-    def initialize(code, raw_body, parsed_body, headers)
+    def initialize(api_key, code, raw_body, parsed_body, headers)
       @code        = code
       @raw_body    = raw_body
       @parsed_body = parsed_body
       @headers     = headers
+      @api_key     = api_key
     end
 
     # @return [Response] if the response is valid return itself
@@ -28,7 +30,7 @@ module Fyber
     protected
 
     def valid?
-      headers['X-Sponsorpay-Response-Signature'] == Encrypt.generate(raw_body)
+      headers['X-Sponsorpay-Response-Signature'] == Encrypt.generate(raw_body + api_key)
     end
 
     def raise_error(error_class)

@@ -23,7 +23,7 @@ module Fyber
     def perform!
       options_key = request_method == :get ? :query : :form
       resp = self.class.public_send(request_method, uri.to_s,{ options_key => options })
-      Response.new(resp.code, resp.body, resp.parsed_response,
+      Response.new(api_key, resp.code, resp.body, resp.parsed_response,
         resp.headers).validate!
     end
 

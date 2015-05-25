@@ -11,7 +11,7 @@ module Fyber
         Yajl::Parser.parse(raw_body)
       end
       let(:response) do
-        Response.new(200, raw_body, parsed_body, {})
+        Response.new("3123123", 200, raw_body, parsed_body, {})
       end
       let(:params) do
         {
