@@ -1,17 +1,22 @@
-</br>
 <a href="/">Back Home</a>
-<table>
-  <tr>
-    <td>Title</td>
-    <td>Thumbnail</td>
-    <td>Payout</td>
-  </tr>
-  <% offers.each do |offer| %>
-    <tr>
-      <td><%= offer.title %></td>
-      <td><img src="<%= offer.thumbnail.lowres %>"></td>
-      <td><%= offer.payout %></td>
-    </tr>
-  <% end %>
-</table>
 
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Thumbnail</th>
+        <th>Payout</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% offers.each do |offer| %>
+        <tr>
+          <td><%= offer.title %></td>
+          <td><img src="<%= offer.thumbnail.lowres %>"></td>
+          <td><%= offer.payout %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

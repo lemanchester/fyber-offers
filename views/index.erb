@@ -1,9 +1,12 @@
-<form action="/offers/" method="get">
-    uid:<input type="text" name="uid">
-    <br/>
-    pub0: <input type="text" name="pub0">
-    <br/>
-    page: <input type="text" name="page">
-    <br/>
-    <input type="submit" value="Submit">
+<form class="form-offers" action="/offers/" method="get">
+  <h2 class="form-offers-heading">Fyber Offers</h2>
+
+  <label for="uid" class="sr-only">uid</label>
+  <input type="text" id="uid" class="form-control" name="uid" placeholder="uid" required autofocus>
+  <label for="pub0" class="sr-only">pub0</label>
+  <input type="text" id="pub0" class="form-control" name="pub0" placeholder="pub0" required>
+  <label for="page" class="sr-only">page</label>
+  <input type="text" id="page" class="form-control" name="page" placeholder="page" required>
+  <br/>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 </form>
