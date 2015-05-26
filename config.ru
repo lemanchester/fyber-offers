@@ -1,5 +1,6 @@
 $stdout.sync = true
 
+require './lib/fyber'
 require './web'
 
 run Fyber::Web
