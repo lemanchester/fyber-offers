@@ -27,6 +27,6 @@ def parse(response)
   Yajl::Parser.parse(response)
 end
 
-def parsed(response)
+def parsed_response(response)
   Yajl::Parser.parse(raw(response))
 end
