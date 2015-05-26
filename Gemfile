@@ -16,6 +16,8 @@ end
 group :development, :test do
   # Rspec to test
   gem 'rspec', '~> 3.2.0'
+  # Integration test
+  gem 'capybara', '~> 2.4.4'
   # Pry to debug
   gem 'pry-byebug'
 end
