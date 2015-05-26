@@ -3,6 +3,8 @@ require 'sinatra/base'
 module Fyber
   class Web < Sinatra::Base
 
+    set :show_exceptions, false
+
     API_CREDENTIALS = {
         appid: 157,
         api_key: "b07a12df7d52e6c118e5d47d3f9e60135b109a1f",
@@ -23,6 +25,10 @@ module Fyber
       }
       offers = client.offers(default.merge(params))
       erb :offers, :locals => { 'offers' => offers }
+    end
+
+    error do
+      erb :error, :locals => { 'error' => env['sinatra.error'] }
     end
 
   end

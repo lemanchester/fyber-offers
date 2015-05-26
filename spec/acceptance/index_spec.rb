@@ -42,6 +42,25 @@ describe "the index", :type => :feature do
 
     end
 
+    context "when the api return an error" do
+      let(:error) { Fyber::InvalidResponseSignature.new }
+      before do
+        allow_any_instance_of(Fyber::Client).to receive(:offers){ raise error }
+      end
+
+      it "return a list of offers" do
+        visit '/'
+
+        fill_in 'uid',  with: '157'
+        fill_in 'pub0', with: 'player1'
+        fill_in 'page', with: '1'
+
+        click_on('Submit')
+
+        expect(page).to have_content error.message
+      end
+    end
+
   end
 
 
