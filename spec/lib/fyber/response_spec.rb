@@ -10,15 +10,11 @@ module Fyber
     subject { described_class.new(api_key, code, raw_body, parsed_body, headers) }
 
     describe "#validate!" do
+      let(:parsed_body) { parse(raw_body) }
 
       context "given a bad response" do
-        let(:code) { 401 }
-        let(:raw_body) do
-          File.read("spec/support/fixtures/invalid_hashkey_response.json")
-        end
-        let(:parsed_body) do
-          Yajl::Parser.parse(raw_body)
-        end
+        let(:code)        { 401 }
+        let(:raw_body)    { raw("invalid_hashkey_response.json") }
 
         it "raise an error" do
           expect { subject.validate! }.to raise_error(Fyber::Error)
@@ -26,13 +22,8 @@ module Fyber
       end
 
       context "given a good response without content" do
-        let(:code) { 200 }
-        let(:raw_body) do
-          File.read("spec/support/fixtures/no_content.json")
-        end
-        let(:parsed_body) do
-          Yajl::Parser.parse(raw_body)
-        end
+        let(:code)        { 200 }
+        let(:raw_body)    { raw("no_content.json") }
 
         before do
           allow(Encrypt).to receive(:generate).and_return("123")
@@ -44,13 +35,9 @@ module Fyber
       end
 
       context "given a success but unstrustful response" do
-        let(:code) { 200 }
-        let(:raw_body) do
-          File.read("spec/support/fixtures/no_content.json")
-        end
-        let(:parsed_body) do
-          Yajl::Parser.parse(raw_body)
-        end
+        let(:code)        { 200 }
+        let(:raw_body)    { raw("no_content.json") }
+
 
         it "raise an error" do
           expect { subject.validate! }.to raise_error(Fyber::InvalidResponseSignature)
@@ -58,13 +45,8 @@ module Fyber
       end
 
       context "given a successful response with content" do
-        let(:code) { 200 }
-        let(:raw_body) do
-          File.read("spec/support/fixtures/offers_response.json")
-        end
-        let(:parsed_body) do
-          Yajl::Parser.parse(raw_body)
-        end
+        let(:code)        { 200 }
+        let(:raw_body)    { raw("offers_response.json") }
 
         before do
           allow(Encrypt).to receive(:generate).and_return("123")

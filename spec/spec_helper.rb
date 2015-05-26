@@ -18,3 +18,15 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = false
   end
 end
+
+def raw(response)
+  File.read(File.join("spec/support/fixtures/", response))
+end
+
+def parse(response)
+  Yajl::Parser.parse(response)
+end
+
+def parsed(response)
+  Yajl::Parser.parse(raw(response))
+end

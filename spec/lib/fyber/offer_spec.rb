@@ -4,12 +4,8 @@ module Fyber
   describe Offer do
 
     describe ".all" do
-      let(:raw_body) do
-        File.read("spec/support/fixtures/offers_response.json")
-      end
-      let(:parsed_body) do
-        Yajl::Parser.parse(raw_body)
-      end
+      let(:raw_body)    { raw("offers_response.json") }
+      let(:parsed_body) { parse(raw_body) }
       let(:response) do
         Response.new("3123123", 200, raw_body, parsed_body, {})
       end
