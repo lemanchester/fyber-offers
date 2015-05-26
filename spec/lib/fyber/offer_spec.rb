@@ -46,5 +46,27 @@ module Fyber
 
     end
 
+    describe ".parse" do
+
+      context "given an array of offers hash" do
+        let(:offer) do
+          {
+            "title"    => "Tap Fish",
+            "offer_id" => 13554,
+            "teaser"   => "Download and START"
+          }
+        end
+
+        subject { described_class.parse([offer]) }
+
+        it { expect(subject).to be_a(Array) }
+
+        it { expect(subject.first).to be_a(Fyber::Offer) }
+
+        it { expect(subject.first.title).to eql("Tap Fish") }
+      end
+
+    end
+
   end
 end
