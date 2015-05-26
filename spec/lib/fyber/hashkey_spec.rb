@@ -7,15 +7,15 @@ module Fyber
       let(:api_key) { "b07a12df7d52e6c118e5d47d3f9e60135b109a1f" }
       let(:params) do
         {
-          appid:      157,
-          device_id:  "2b6f0cc904d137be2e1730235f5664094b831186",
-          ip:         "212.45.111.17",
-          locale:     "de",
-          page:       2,
-          ps_time:    1312211903,
-          pub0:       "campaign2",
-          timestamp:  1312553361,
-          uid:        "player1"
+          appid:        157,
+          device_id:    "2b6f0cc904d137be2e1730235f5664094b831186",
+          ip:           "212.45.111.17",
+          page:         2,
+          pub0:         "campaign2",
+          timestamp:    1312553361,
+          uid:          "player1",
+          "ps_time" =>  1312211903,
+          "locale"  =>  "de",
         }
       end
 

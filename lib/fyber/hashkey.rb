@@ -1,5 +1,5 @@
 module Fyber
-  class Hashkey < Struct.new(:params, :api_key)
+  class Hashkey < Struct.new(:options, :api_key)
 
     # @return [String] encrypted ordernaded query string
     def generate
@@ -13,8 +13,13 @@ module Fyber
       end
 
       def sort_params_adding_api_key
-        sorted_params = params.keys.sort.map{ |key| "#{key}=#{params[key]}" }
+        symbolize_keys
+        sorted_params = options.keys.sort.map{ |key| "#{key}=#{options[key]}" }
         sorted_params << api_key
+      end
+
+      def symbolize_keys
+        self.options = Hash[ self.options.map { |k,v| [k.to_sym, v] } ]
       end
 
   end
