@@ -1,9 +1,9 @@
 require 'bundler/setup'
 require "yajl"
+require "fyber"
 
 $: << File.expand_path('../../lib', __FILE__)
 
-require "fyber"
 
 RSpec.configure do |config|
 
