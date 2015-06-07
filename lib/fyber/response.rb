@@ -3,11 +3,11 @@ module Fyber
 
     attr_reader :api_key, :code, :raw_body, :parsed_body, :headers
 
-    # @param [Strubg] the api key
-    # @param [Integer] the http status code
-    # @param [String]  the raw response body
-    # @param [Hash<String,String>] parsed response body
-    # @param [Hash<String,String>] the headers of the request
+    # @param [String] the api key
+    # @param [Integer] code the http status code
+    # @param [String] raw_body the raw response body
+    # @param [Hash<String,String>] parsed_body parsed response body
+    # @param [Hash<String,String>] headers the headers of the request
     def initialize(api_key, code, raw_body, parsed_body, headers)
       @code        = code
       @raw_body    = raw_body
@@ -18,7 +18,7 @@ module Fyber
 
     # @return [Response] if the response is valid return itself
     # @raise [Fyber::Error] when status code != 200
-    # @raise [Fyber::InvalidResponseSignatura] when the header resp-sig don't match
+    # @raise [Fyber::InvalidResponseSignature] when the header resp-sig don't match
     # @raise [Fyber::NoContentError] when there is no content on the body
     def validate!
       raise_error(Error) if code != 200

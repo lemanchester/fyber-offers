@@ -7,10 +7,10 @@ module Fyber
 
     attr_reader :request_method, :path, :uri, :options, :api_key
 
-    # @param [Symbol] http verb
+    # @param [Symbol] request_method http verb
     # @param [String] path to the offer-api or full URL
-    # @param [String] the api key
-    # @param [Hash<Symbol,String>] list of the http params
+    # @param [String] api_key the api key
+    # @param [Hash<Symbol,String>] options list of the http params
     def initialize(request_method, path, api_key, options = {})
       @options        = set_hashkey(defaults(options), api_key)
       @uri            = URI.new(path, @options[:format])
@@ -19,6 +19,8 @@ module Fyber
       @request_method = request_method
     end
 
+    # It responsible to perform the http call to the API
+    #
     # @return [HTTParty::Response] http response from the performed action
     def perform!
       options_key = request_method == :get ? :query : :form

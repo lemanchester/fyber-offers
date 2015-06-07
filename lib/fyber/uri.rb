@@ -6,8 +6,8 @@ module Fyber
 
     attr_reader :uri
 
-    # @param [String] the uri path
-    # @param [String|Symbol] the format
+    # @param path [String] the uri path
+    # @param format [String, Symbol] the format (json or xml)
     def initialize(path, format)
       path = set_format(path, format)
       if path.start_with?('http')
