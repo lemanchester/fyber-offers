@@ -11,6 +11,7 @@ gem 'hashie', '~> 3.4.1'
 
 group :development do
   gem 'foreman'
+  gem 'yard'
 end
 
 group :development, :test do
