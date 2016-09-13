@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.3.1'
 
 gem 'thin', '~> 1.6.3'
 gem 'httparty', '~> 0.13.5'
@@ -8,6 +8,7 @@ gem 'addressable', '~> 2.3.8'
 gem 'sinatra'
 gem 'yajl-ruby', '~> 1.2.1'
 gem 'hashie', '~> 3.4.1'
+gem 'rake', '~> 11.2', '>= 11.2.2'
 
 group :development do
   gem 'foreman'

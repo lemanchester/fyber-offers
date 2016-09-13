@@ -40,6 +40,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rake (11.2.2)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -79,8 +80,15 @@ DEPENDENCIES
   hashie (~> 3.4.1)
   httparty (~> 0.13.5)
   pry-byebug
+  rake (~> 11.2, >= 11.2.2)
   rspec (~> 3.2.0)
   sinatra
   thin (~> 1.6.3)
   yajl-ruby (~> 1.2.1)
   yard
+
+RUBY VERSION
+   ruby 2.3.1p112
+
+BUNDLED WITH
+   1.13.0
