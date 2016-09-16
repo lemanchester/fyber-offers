@@ -9,6 +9,7 @@ gem 'sinatra'
 gem 'yajl-ruby', '~> 1.2.1'
 gem 'hashie', '~> 3.4.1'
 gem 'rake', '~> 11.2', '>= 11.2.2'
+gem 'dotenv', '~> 2.1', '>= 2.1.1'
 
 group :development do
   gem 'foreman'

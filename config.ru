@@ -1,5 +1,7 @@
 $stdout.sync = true
 
+require 'dotenv'
+Dotenv.load
 require './lib/fyber'
 require './web'
 
